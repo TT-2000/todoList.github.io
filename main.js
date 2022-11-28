@@ -5,7 +5,7 @@ const form = document.querySelector("#form")
 const todos = JSON.parse(localStorage.getItem('list'))
 
 if(todos) {
-    todos.forEach(todo => todoList(todo))
+    todos.forEach(  todo => todoList(todo))
 }
 
 form.onsubmit = (e) => {
@@ -25,29 +25,28 @@ function todoList(todo) {
 
     li.onclick = () => {
         li.classList.add("active")
-        updateLS()
+        saveTodo()
     }
 
     li.oncontextmenu = (e) => {
         e.preventDefault()
         e.target.remove()
-        updateLS()
+        saveTodo()
     }
 
     list.appendChild(li)
 
-    updateLS()
+    saveTodo()
 }
 
-function updateLS() {
-    todosEl = document.querySelectorAll('li')
+function saveTodo() {
+    todoLi = document.querySelectorAll('li')
 
     const todos = []
 
-    todosEl.forEach(todoEl => {
+    todoLi.forEach( each => {
         todos.push({
-            text: todoEl.innerText,
-            completed: todoEl.classList.contains('completed')
+            text:  each.innerText
         })
     })
 
